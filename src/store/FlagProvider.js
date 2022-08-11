@@ -1,7 +1,9 @@
+import { countries } from 'country-flags-svg';
 import { useReducer } from 'react';
 import FlagContext from './context';
 
 const initialState = {
+  question: {},
   score: 0,
   totalQuestion: 10,
   currentQuestion: 0,
@@ -33,10 +35,15 @@ const flagReducer = (state, action) => {
         options,
       };
 
-      return { ...state, question, currentQuestion: state.currentQuestion + 1 };
+      return {
+        ...state,
+        question,
+        currentQuestion: state.currentQuestion + 1,
+        showNextButton: false,
+      };
 
     case 'VALIDATE_ANS':
-      return state;
+      return { ...state, showNextButton: true };
 
     default:
       return state;
@@ -50,7 +57,7 @@ const FlagProvider = (props) => {
     dispatch({ type: 'GEN_NEXT_QUES' });
   };
 
-  const validiteAnswer = (guess) => {
+  const validateAnswer = (guess) => {
     dispatch({ type: 'VALIDATE_ANS', payload: guess });
   };
 
@@ -61,7 +68,7 @@ const FlagProvider = (props) => {
     currentQuestion: store.currentQuestion,
     showNextButton: false,
     generateNewQuestion,
-    validiteAnswer,
+    validateAnswer,
   };
 
   return (
