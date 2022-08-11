@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Question from './components/Question';
+import classes from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section
+      className={classes.app}
+      style={{
+        backgroundImage: `url("https://t4.ftcdn.net/jpg/04/84/11/15/360_F_484111532_W0WOkKeXQzF75XusA7R8e3llIDXqyCFm.jpg")`,
+      }}
+    >
+      <Question />;
+    </section>
   );
 }
 
