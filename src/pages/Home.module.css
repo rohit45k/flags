@@ -1,0 +1,35 @@
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.main {
+    padding: 2rem;
+    text-align: center;
+    color: white;
+}
+
+.main h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+
+.games {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.games > div {
+    max-width: 250px;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #23A7f1;
+}
+
+.games > div img {
+    width: 100%;
+    margin-bottom: 0.8rem;
+}

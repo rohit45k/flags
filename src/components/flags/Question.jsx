@@ -17,7 +17,7 @@ const generateNewQuestion = () => {
     options.push(countries[rand].name);
   }
   options.push(ans);
-  options = options.sort();
+  options = options.sort(() => 0.5 - Math.random());
 
   INDEX += 1;
   return {
