@@ -33,3 +33,10 @@ a {
     width: 100%;
     margin-bottom: 0.8rem;
 }
+
+@media only screen and (max-width: 600px) {
+
+    .games {
+            justify-content: center;
+        }
+}
