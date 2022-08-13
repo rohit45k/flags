@@ -56,8 +56,11 @@ const flagReducer = (state, action) => {
         return { ...state, showNextButton: true };
       }
 
+    case 'SET_NUM_QUES':
+      return { ...state, totalQuestion: action.payload };
+
     case 'RESET':
-      return initialState;
+      return { ...initialState, totalQuestion: state.totalQuestion };
 
     default:
       return state;
@@ -82,12 +85,17 @@ const FlagProvider = (props) => {
     }
   };
 
+  const setQuestions = (num) => {
+    dispatch({ type: 'SET_NUM_QUES', payload: num });
+  };
+
   const flagStore = {
     question: store.question,
     score: store.score,
     totalQuestion: store.totalQuestion,
     currentQuestion: store.currentQuestion,
     showNextButton: store.showNextButton,
+    setQuestions,
     generateNewQuestion,
     validateAnswer,
     reset,

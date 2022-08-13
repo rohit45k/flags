@@ -7,6 +7,21 @@
   align-items: center;
 }
 
+.select select {
+  padding: 0.25rem;
+  background-color: transparent;
+  color: white;
+  font-size: 2rem;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+
+.select select option {
+  color: black;
+  font-size: 1.2rem;
+}
+
 .nextBtn {
   width: 100%;
   padding: 0.3rem;

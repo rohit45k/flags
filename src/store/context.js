@@ -6,6 +6,7 @@ const FlagContext = createContext({
   totalQuestion: 10,
   currentQuestion: 0,
   showNextButton: false,
+  setQuestions: (num) => {},
   generateNewQuestion: () => {},
   validateAnswer: (guess) => {},
   reset: () => {},

@@ -14,7 +14,22 @@ const QuestionPage = () => {
       <Card className={classes.main}>
         {!isStarted ? (
           <>
-            <h1>Total Questions : {flagCtx.totalQuestion}</h1>
+            <h1>
+              Total Questions :{' '}
+              <span className={classes.select}>
+                <select
+                  value={flagCtx.totalQuestion}
+                  onChange={(e) =>
+                    flagCtx.setQuestions(parseInt(e.target.value))
+                  }
+                >
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={20}>20</option>
+                  <option value={50}>50</option>
+                </select>
+              </span>
+            </h1>
             <h1>
               <button
                 className={classes.nextBtn}

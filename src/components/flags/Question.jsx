@@ -11,7 +11,7 @@ const Question = () => {
 
   useEffect(() => {
     reset();
-  }, [generateNewQuestion, reset]);
+  }, [reset]);
 
   const nextQuestionHandler = () => {
     setSelectedOption('');
