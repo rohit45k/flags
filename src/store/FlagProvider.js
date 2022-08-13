@@ -1,4 +1,5 @@
 import { countries } from 'country-flags-svg';
+import { useCallback } from 'react';
 import { useReducer } from 'react';
 import FlagContext from './context';
 
@@ -43,7 +44,20 @@ const flagReducer = (state, action) => {
       };
 
     case 'VALIDATE_ANS':
-      return { ...state, showNextButton: true };
+      if (state.question.ans === action.payload) {
+        console.log('Correct Answer');
+        return {
+          ...state,
+          showNextButton: true,
+          score: state.score + 1,
+        };
+      } else {
+        console.log('Wrong Answer');
+        return { ...state, showNextButton: true };
+      }
+
+    case 'RESET':
+      return initialState;
 
     default:
       return state;
@@ -53,12 +67,19 @@ const flagReducer = (state, action) => {
 const FlagProvider = (props) => {
   const [store, dispatch] = useReducer(flagReducer, initialState);
 
-  const generateNewQuestion = () => {
+  const generateNewQuestion = useCallback(() => {
     dispatch({ type: 'GEN_NEXT_QUES' });
-  };
+  }, []);
+
+  const reset = useCallback(() => {
+    dispatch({ type: 'RESET' });
+    generateNewQuestion();
+  }, [generateNewQuestion]);
 
   const validateAnswer = (guess) => {
-    dispatch({ type: 'VALIDATE_ANS', payload: guess });
+    if (!store.showNextButton) {
+      dispatch({ type: 'VALIDATE_ANS', payload: guess });
+    }
   };
 
   const flagStore = {
@@ -66,9 +87,10 @@ const FlagProvider = (props) => {
     score: store.score,
     totalQuestion: store.totalQuestion,
     currentQuestion: store.currentQuestion,
-    showNextButton: false,
+    showNextButton: store.showNextButton,
     generateNewQuestion,
     validateAnswer,
+    reset,
   };
 
   return (

@@ -7,7 +7,8 @@ const FlagContext = createContext({
   currentQuestion: 0,
   showNextButton: false,
   generateNewQuestion: () => {},
-  validiteAnswer: (guess) => {},
+  validateAnswer: (guess) => {},
+  reset: () => {},
 });
 
 export default FlagContext;
