@@ -1,19 +1,26 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Result from './Result';
 import classes from './Question.module.css';
 import FlagContext from '../../store/context';
 
 const Question = () => {
+  const [selectedOption, setSelectedOption] = useState('');
+
   const flagCtx = useContext(FlagContext);
   const { generateNewQuestion, reset } = flagCtx;
 
   useEffect(() => {
     reset();
-    generateNewQuestion();
   }, [generateNewQuestion, reset]);
 
   const nextQuestionHandler = () => {
+    setSelectedOption('');
     generateNewQuestion();
+  };
+
+  const optionClickHandler = (option) => {
+    setSelectedOption(option);
+    flagCtx.validateAnswer(option);
   };
 
   return (
@@ -29,10 +36,18 @@ const Question = () => {
             {flagCtx.question.options?.map((option) => (
               <li
                 key={option}
-                onClick={() => flagCtx.validateAnswer(option)}
-                className={
-                  flagCtx.question.ans === option ? classes.green : classes.red
-                }
+                onClick={() => optionClickHandler(option)}
+                className={`${
+                  selectedOption &&
+                  option === selectedOption &&
+                  selectedOption !== flagCtx.question.ans
+                    ? classes.red
+                    : ''
+                } ${
+                  selectedOption && option === flagCtx.question.ans
+                    ? classes.green
+                    : ''
+                } `}
               >
                 {option}
               </li>

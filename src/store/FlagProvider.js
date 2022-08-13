@@ -45,14 +45,14 @@ const flagReducer = (state, action) => {
 
     case 'VALIDATE_ANS':
       if (state.question.ans === action.payload) {
-        console.log('Correct Answer');
+        // console.log('Correct Answer');
         return {
           ...state,
           showNextButton: true,
           score: state.score + 1,
         };
       } else {
-        console.log('Wrong Answer');
+        // console.log('Wrong Answer');
         return { ...state, showNextButton: true };
       }
 
